@@ -163,7 +163,7 @@
 .nav-link-item {
 	position: relative;
 }
-.nav-link-item:hover::after {
+.nav-link-item.active::after {
 	content: '';
 	position: absolute;
 	bottom: -30%;
