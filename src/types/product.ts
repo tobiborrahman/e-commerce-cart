@@ -3,6 +3,10 @@ export interface Rating {
 	count: number;
 }
 
+interface CartItem extends Product {
+	cartItemId: string;
+}
+
 export interface Product {
 	id: number;
 	title: string;
@@ -10,5 +14,6 @@ export interface Product {
 	description: string;
 	category: string;
 	image: string;
+	cartItemId: string;
 	rating: Rating;
 }

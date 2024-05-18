@@ -16,13 +16,15 @@ const Navbar = () => {
 					</div>
 					<nav className="navbar-center md:flex">
 						<ul className="menu menu-horizontal px-1">
+
 							<li>
-								<a className="nav-link-products font-primary font-bold text-[12px] leading-[20px] tracking-[2px] text-[#f9f9f9] uppercase">
+								<a href='/products' className="nav-link-products font-primary font-bold text-[12px] leading-[20px] tracking-[2px] text-[#f9f9f9] uppercase">
 									Products
 								</a>
 							</li>
+
 							<li>
-								<a className="nav-link-cart font-primary font-bold text-[12px] leading-[20px] tracking-[2px] text-[#f9f9f9] uppercase ">
+								<a href='/cart' className="nav-link-cart font-primary font-bold text-[12px] leading-[20px] tracking-[2px] text-[#f9f9f9] uppercase ">
 									Cart
 								</a>
 							</li>

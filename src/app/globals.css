@@ -185,6 +185,7 @@
 	border-radius: 4px;
 }
 
+
 @layer utilities {
 	.custom-container {
 		max-width: 1140px;
