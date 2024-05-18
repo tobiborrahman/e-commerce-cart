@@ -8,8 +8,7 @@ import { useEffect, useState } from 'react';
 
 import { CgMenuGridR } from 'react-icons/cg';
 import { TfiMenuAlt } from 'react-icons/tfi';
-import { FaTrash, FaTrashAlt } from 'react-icons/fa';
-import Cart from '../Cart/Cart';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const Products = () => {
 	const [products, setProducts] = useState<Product[]>([]);
@@ -29,7 +28,7 @@ const Products = () => {
 	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
 	const addToCart = (product: Product) => {
-		const newCartItem = { ...product, cartItemId: uuidv4() }
+		const newCartItem = { ...product, cartItemId: uuidv4() };
 		const newCart = [...cart, newCartItem];
 		setCart(newCart);
 		localStorage.setItem('cart', JSON.stringify(newCart));
@@ -41,12 +40,17 @@ const Products = () => {
 		localStorage.setItem('cart', JSON.stringify(newCart));
 	};
 
-	const totalAmount = cart.reduce((total, product) => total + product.price, 0)
+	const totalAmount = cart.reduce(
+		(total, product) => total + product.price,
+		0
+	);
 
 	useEffect(() => {
-		const storedCart = JSON.parse(localStorage.getItem('cart') || '[]') as Product[];
-		setCart(storedCart)
-	}, [])
+		const storedCart = JSON.parse(
+			localStorage.getItem('cart') || '[]'
+		) as Product[];
+		setCart(storedCart);
+	}, []);
 
 	useEffect(() => {
 		const fetchProducts = async () => {
@@ -64,15 +68,14 @@ const Products = () => {
 		fetchProducts();
 	}, []);
 
-
 	return (
 		<div className="py-[60px]">
 			<div className="custom-container">
-				<div className="w-[700px] sm:w-full pb-[48px]">
+				<div className="w-[732px] sm:w-full pb-[48px]">
 					<div className="flex justify-between items-center pb-7 sm:pb-6">
 						<h3 className="capitalize">Our all products</h3>
 						<div className="flex items-center gap-3">
-							<CgMenuGridR className="text-[30px]" />
+							<CgMenuGridR className="text-[30px] text-blue-500" />
 							<TfiMenuAlt className="text-[26px]" />
 						</div>
 					</div>
@@ -92,8 +95,8 @@ const Products = () => {
 					</div>
 				</div>
 
-				<div className='flex gap-6'>
-					<div className="w-[732px]">
+				<div className="flex gap-6">
+					<div className="w-[732px] col-span-2">
 						{loading ? (
 							<p>Loading Products...</p>
 						) : (
@@ -139,11 +142,16 @@ const Products = () => {
 												</span>
 											</div>
 
-											<div className="flex justify-between align-items mt-4">
+											<div className="flex justify-between items-center mt-4">
 												<p className="text-[18px] font-bold leading-[27px] text-[#F2415A]">
 													${product.price}
 												</p>
-												<button className="bg-primary text-white py-[6px] px-[10px] rounded hover:bg-blue-700 font-normal font-primary text-[16px] leading-[24px]" onClick={() => addToCart(product)}>
+												<button
+													className="bg-primary text-white py-[6px] px-[10px] rounded hover:bg-blue-700 font-normal font-primary text-[16px] leading-[24px]"
+													onClick={() =>
+														addToCart(product)
+													}
+												>
 													Add to Cart
 												</button>
 											</div>
@@ -194,36 +202,51 @@ const Products = () => {
 						</div>
 					</div>
 
-					{/* <Cart /> */}
-
-					<div className='w-[444px] block sm:hidden md:hidden'>
+					<div className="w-[444px] block sm:hidden md:hidden">
 						<div className="cart-container border rounded px-2 py-3">
-							<p className="text-[12px] font-primary font-bold leading-[20px] tracking-[2px] w-full bg-[#212529] uppercase text-white py-[10px] rounded-[5px] text-center">Selected Products</p>
-							<div className="flex flex-col space-y-2">
+							<p className="text-[12px] font-primary font-bold leading-[20px] tracking-[2px] w-full bg-[#212529] uppercase text-white py-[10px] rounded-[5px] text-center mb-3">
+								Selected Products
+							</p>
+							<div className="flex flex-col gap-3">
 								{cart.map((item) => (
-									<div key={item.id} className="flex items-center border rounded bg-[#F7F8F8] h-[161px]">
-										<div className='w-[163px] h-[159px] overflow-hidden'>
-											<Image
-												src={item.image}
-												alt={item.title}
-												width={200}
-												height={159}
-												className="rounded w-full h-full"
-											/>
-										</div>
+									<div
+										key={item.id}
+										className="flex items-center border rounded bg-[#F7F8F8] h-[161px]"
+									>
+
+										<Image
+											src={item.image}
+											alt={item.title}
+											width={163}
+											height={159}
+											className="rounded w-[163px] h-full"
+										/>
+
 										<div className="flex-grow pl-4 pr-8 py-[10px]">
-											<h3 className="text-[16px] font-primary leading-[24px] font-normal pb-4">{item.title}</h3>
+											<h3 className="text-[16px] font-primary leading-[24px] font-normal mb-4 overflow-hidden line-clamp-1">
+												{item.title}
+											</h3>
 											<div className="text-yellow-500">
-												{Array(Math.round(item.rating.rate)).fill(0).map((_, i) => (
-													<span key={i}>★</span>
-												))}
+												{Array(
+													Math.round(item.rating.rate)
+												)
+													.fill(0)
+													.map((_, i) => (
+														<span key={i}>★</span>
+													))}
 											</div>
-											<p className="text-xs text-gray-500 pb-[9px]">({item.rating.count} Review)</p>
-											<p className="text-[18px] font-bold leading-[27xp] font-primary text-red-500">${item.price.toFixed(2)}</p>
+											<p className="text-xs text-gray-500 pb-[9px]">
+												({item.rating.count} Review)
+											</p>
+											<p className="text-[18px] font-bold leading-[27xp] font-primary text-red-500">
+												${item.price.toFixed(2)}
+											</p>
 										</div>
 										<button
 											className="text-red-500 hover:text-red-700 pr-2"
-											onClick={() => removeFromCart(item.cartItemId)}
+											onClick={() =>
+												removeFromCart(item.cartItemId)
+											}
 										>
 											<FaTrashAlt />
 										</button>
@@ -231,10 +254,15 @@ const Products = () => {
 								))}
 							</div>
 							<div className="mt-4">
-								<p className="text-lg font-semibold text-end">Total: ${totalAmount.toFixed(2)}</p>
+								<p className="text-lg font-semibold text-end">
+									Total: ${totalAmount.toFixed(2)}
+								</p>
 								<div className="mt-2">
 									<label className="inline-flex items-center">
-										<input type="checkbox" className="form-checkbox" />
+										<input
+											type="checkbox"
+											className="form-checkbox"
+										/>
 										<span className="ml-[40px] text-[12px] font-normal font-primary leading-[20px] tracking-[2px] ">
 											I've read and agree to the{' '}
 											<a href="#" className=" underline">
@@ -251,7 +279,7 @@ const Products = () => {
 										</span>
 									</label>
 								</div>
-								<div className='flex justify-end'>
+								<div className="flex justify-end">
 									<button className="mt-6 bg-[#212529] text-white p-[10px] rounded-[5px] hover:bg-gray-800 text-[12px] font-primary font-bold leading-[20px] tracking-[2px] uppercase">
 										Checkout
 									</button>
@@ -259,6 +287,7 @@ const Products = () => {
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -266,3 +295,4 @@ const Products = () => {
 };
 
 export default Products;
+

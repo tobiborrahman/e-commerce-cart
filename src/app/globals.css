@@ -160,37 +160,42 @@
 	padding-top: 14px;
 	box-shadow: 0 4px 40px 0 #0000001a;
 }
-.nav-link-products {
+.nav-link-item {
 	position: relative;
 }
-.nav-link-products:hover::after {
+.nav-link-item:hover::after {
 	content: '';
 	position: absolute;
-	bottom: 15%;
-	left: 14%;
-	width: 16px;
-	border-bottom: 2px solid #f9f9f9;
-	border-radius: 4px;
-}
-.nav-link-cart {
-	position: relative;
-}
-.nav-link-cart:hover::after {
-	content: '';
-	position: absolute;
-	bottom: 15%;
-	left: 22%;
+	bottom: -30%;
+	left: 0%;
 	width: 16px;
 	border-bottom: 2px solid #f9f9f9;
 	border-radius: 4px;
 }
 
+.mobileMenu {
+	position: absolute;
+	top: 100px; /* Adjust this value based on your navbar height */
+	left: 0;
+	width: 100%;
+	background-color: #f0f0f0; /* Change this to your desired background color */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transform: translateY(-100%);
+	transition: transform 1s ease-in-out;
+	z-index: 9999;
+}
+
+.mobileMenu.open {
+	transform: translateY(0);
+}
+
+.mobileMenu ul {
+	padding: 1rem;
+}
 
 @layer utilities {
 	.custom-container {
-		max-width: 1140px;
-		/* padding-left: 120px;
-		padding-right: 120px; */
+		max-width: 1200px;
 		margin-left: auto;
 		margin-right: auto;
 	}
