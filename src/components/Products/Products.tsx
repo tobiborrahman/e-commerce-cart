@@ -110,16 +110,16 @@ const Products = () => {
 									{currentProducts.map((product) => (
 										<div
 											key={product.id}
-											className="flex items-center border rounded-[8px] bg-[#F7F8F8]"
+											className="flex items-center border rounded-[5px] bg-[#F7F8F8]"
 										>
 											<Image
 												src={product.image}
 												alt={product.title}
 												width={358}
 												height={161}
-												className="rounded w-[358px] md:w-[324px] h-[159px] sm:w-[163px] sm:h-[175px]"
+												className="rounded-[5px] w-[358px] md:w-[324px] h-[159px] sm:w-[163px] sm:h-[175px]"
 											/>
-											<div className="sm:pl-4 sm:p-0 md:p-0 md:px-4 flex-1">
+											<div className="px-4 sm:pl-4 sm:px-0 md:py-0 md:px-4 lg:px-4 flex-1">
 												<h2 className="w-full text-sm font-bold overflow-hidden line-clamp-1 sm:line-clamp-2">
 													{product.title}
 												</h2>
@@ -173,14 +173,14 @@ const Products = () => {
 									{currentProducts.map((product) => (
 										<div
 											key={product.id}
-											className="border rounded-[8px] bg-[#F7F8F8]"
+											className="border rounded-[5px] bg-[#F7F8F8]"
 										>
 											<Image
 												src={product.image}
 												alt={product.title}
 												width={200}
 												height={200}
-												className="rounded w-full h-[180px]"
+												className="rounded-[5px] w-full h-[180px]"
 											/>
 											<div className="p-4">
 												<h2 className="text-sm font-bold overflow-hidden line-clamp-1 mb-2">
