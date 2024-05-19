@@ -43,7 +43,8 @@ const Cart: React.FC<CartProps> = ({
                     className="rounded w-[163px] h-full"
                   />
 
-                  <div className="flex-grow pl-4 pr-8">
+
+                  <div className="pl-4 flex-grow">
                     <h3 className="text-[16px] font-primary leading-[24px] font-normal mb-4 overflow-hidden line-clamp-1">
                       {item.title}
                     </h3>
@@ -61,14 +62,17 @@ const Cart: React.FC<CartProps> = ({
                       ${item.price.toFixed(2)}
                     </p>
                   </div>
-                  <button
-                    className="text-red-500 hover:text-red-700 pr-2"
-                    onClick={() =>
-                      removeFromCart(item.cartItemId)
-                    }
-                  >
-                    <FaTrashAlt />
-                  </button>
+                  <div>
+                    <button
+                      className="text-red-500 hover:text-red-700 pr-2"
+                      onClick={() =>
+                        removeFromCart(item.cartItemId)
+                      }
+                    >
+                      <FaTrashAlt />
+                    </button>
+                  </div>
+
                 </div>
               ))}
             </div>
