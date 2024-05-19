@@ -24,7 +24,7 @@ const Cart: React.FC<CartProps> = ({
   return (
     <div>
       <div className="custom-container flex justify-center items-center py-[60px] md:py-0">
-        <div className="w-[618px] sm:w-full sm:px-4 sm:py-[60px] md:w-full md:px-10 md:py-[60px]">
+        <div className="w-[618px] sm:w-full sm:px-0 sm:py-[60px] md:w-full md:px-5 md:py-[60px]">
           <div className="cart-container border rounded px-2 py-3">
             <p className="text-[12px] font-primary font-bold leading-[20px] tracking-[2px] w-full bg-[#212529] uppercase text-white py-[10px] rounded-[5px] text-center mb-3">
               Selected Products

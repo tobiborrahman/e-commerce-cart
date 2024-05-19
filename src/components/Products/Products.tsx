@@ -117,16 +117,16 @@ const Products = () => {
 												alt={product.title}
 												width={358}
 												height={161}
-												className="rounded w-[358px] md:w-[324px] sm:w-[163px] h-[159px] sm:h-[175px]"
+												className="rounded w-[358px] md:w-[324px] h-[159px] sm:w-[163px] sm:h-[175px]"
 											/>
-											<div className="p-4 flex-1">
+											<div className="sm:pl-4 sm:p-0 md:p-0 md:px-4 flex-1">
 												<h2 className="w-full text-sm font-bold overflow-hidden line-clamp-1 sm:line-clamp-2">
 													{product.title}
 												</h2>
 
 
-												<div className="mt-4 sm:mt-2">
-													<span className="text-yellow-500 text-[16px]">
+												<div className="mt-4 sm:mt-0 md:mt-2">
+													<span className="text-yellow-500 text-[20px]">
 														{Array(
 															Math.round(
 																product.rating.rate
@@ -146,7 +146,7 @@ const Products = () => {
 													</span>
 
 												</div>
-												<div className="flex sm:flex-col justify-between items-center sm:items-start mt-4 sm:mt-2 w-full">
+												<div className="flex sm:flex-col justify-between items-center sm:items-start mt-4 sm:mt-0 md:mt-2 w-full">
 													<div>
 														<p className="text-[18px] font-bold leading-[27px] text-[#F2415A]">
 															${product.price}
@@ -180,7 +180,7 @@ const Products = () => {
 												alt={product.title}
 												width={200}
 												height={200}
-												className="rounded w-[236px] h-[180px]"
+												className="rounded w-full h-[180px]"
 											/>
 											<div className="p-4">
 												<h2 className="text-sm font-bold overflow-hidden line-clamp-1 mb-2">
@@ -233,7 +233,7 @@ const Products = () => {
 
 						)}
 
-						<div className="join flex justify-end items-center !bg-transparent pt-[39.5px]">
+						<div className="join flex justify-end sm:justify-center items-center !bg-transparent pt-[39.5px]">
 							<button
 								className="join-item py-[5px] px-[10px] mt-[4px]"
 								onClick={() => paginate(1)}

@@ -218,8 +218,8 @@
 
 	@media screen and (max-width: 767px) {
 		.custom-container {
-			padding-left: 15px;
-			padding-right: 15px;
+			padding-left: 16px;
+			padding-right: 16px;
 		}
 	}
 

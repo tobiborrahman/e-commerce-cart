@@ -4,7 +4,7 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/f
 
 const Footer = () => {
 	return (
-		<footer className="py-[80px] md:py-[60px] md:px-[40px] sm:px-4 bg-[#212529] text-[#F9F9F9]">
+		<footer className="py-[80px] md:py-[60px] md:px-[20px] sm:px-0 bg-[#212529] text-[#F9F9F9]">
 			<div className="custom-container">
 				<div className="flex justify-between sm:flex-wrap md:flex-wrap md:gap-12 sm:gap-12">
 					<aside className='w-[210px]'>
@@ -31,11 +31,11 @@ const Footer = () => {
 							<FaInstagram className='text-[23px] text-[#F9F9F9]' />
 						</div>
 					</aside>
-					<nav className='capitalize'>
+					<nav className='sm:w-auto md:w-[308px] lg:w-auto'>
 						<h6 className="text-[#F9F9F9] text-[20px] font-bold leading-[30px] font-primary mb-6">Company</h6>
-						<li className="link link-hover text-[16px] font-normal leading-[24px] font-primary text-[#F9F9F9]">About Us</li>
+						<li className="link link-hover text-[16px] font-normal leading-[24px] font-primary text-[#F9F9F9]">About us</li>
 						<li className="link link-hover">Career</li>
-						<li className="link link-hover">Contact Us</li>
+						<li className="link link-hover">Contact us</li>
 						<li className="link link-hover">Start Selling</li>
 						<li className="link link-hover">Order History</li>
 					</nav>
@@ -47,7 +47,7 @@ const Footer = () => {
 						<li className="link link-hover">help</li>
 						<li className="link link-hover">wishlist</li>
 					</nav>
-					<nav className='capitalize'>
+					<nav className='capitalize sm:w-auto md:w-[308px] lg:w-auto'>
 						<h6 className="text-[#F9F9F9] text-[20px] font-bold leading-[30px] font-primary mb-6">Customer Service</h6>
 						<li className="link link-hover">payment method</li>
 						<li className="link link-hover">money return policy</li>
