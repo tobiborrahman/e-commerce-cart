@@ -78,8 +78,8 @@ const Products = () => {
 					<div className="flex justify-between items-center pb-7 sm:pb-6">
 						<h3 className="capitalize">Our all products</h3>
 						<div className="flex items-center gap-3">
-							<CgMenuGridR onClick={handleGridLayout} className={`text-[30px] ${isGridLayout ? 'text-black' : 'text-[#525CEB]'}`} />
-							<TfiMenuAlt onClick={handleRowLayout} className={`text-[26px] ${isGridLayout ? 'text-[#525CEB]' : 'text-black'}`} />
+							<CgMenuGridR onClick={handleGridLayout} className={`text-[30px] cursor-pointer ${isGridLayout ? 'text-black' : 'text-[#525CEB]'}`} />
+							<TfiMenuAlt onClick={handleRowLayout} className={`text-[26px] cursor-pointer ${isGridLayout ? 'text-[#525CEB]' : 'text-black'}`} />
 						</div>
 					</div>
 					<div className="relative">
@@ -101,29 +101,31 @@ const Products = () => {
 				<div className="flex gap-6">
 					<div className="w-[732px] col-span-2">
 						{loading ? (
-							<p>Loading Products...</p>
+							<div className='flex justify-center items-center'>
+								<span className="loading loading-dots loading-lg text-[40px]"></span>
+							</div>
 						) : (
 							isGridLayout ? (
 								<div className="grid grid-cols-1 gap-3 w-full">
 									{currentProducts.map((product) => (
 										<div
 											key={product.id}
-											className="h-[161px] flex items-center border rounded-[8px] bg-[#F7F8F8]"
+											className="flex items-center border rounded-[8px] bg-[#F7F8F8]"
 										>
 											<Image
 												src={product.image}
 												alt={product.title}
 												width={358}
-												height={159}
-												className="rounded w-[358px] h-[159px]"
+												height={161}
+												className="rounded w-[358px] md:w-[324px] sm:w-[163px] h-[159px] sm:h-[175px]"
 											/>
 											<div className="p-4 flex-1">
-												<h2 className="w-full text-sm font-bold overflow-hidden line-clamp-1">
+												<h2 className="w-full text-sm font-bold overflow-hidden line-clamp-1 sm:line-clamp-2">
 													{product.title}
 												</h2>
 
 
-												<div className="mt-4">
+												<div className="mt-4 sm:mt-2">
 													<span className="text-yellow-500 text-[16px]">
 														{Array(
 															Math.round(
@@ -144,7 +146,7 @@ const Products = () => {
 													</span>
 
 												</div>
-												<div className="flex justify-between items-center mt-4 w-full">
+												<div className="flex sm:flex-col justify-between items-center sm:items-start mt-4 sm:mt-2 w-full">
 													<div>
 														<p className="text-[18px] font-bold leading-[27px] text-[#F2415A]">
 															${product.price}
@@ -167,7 +169,7 @@ const Products = () => {
 									))}
 								</div>
 							) : (
-								<div className="grid grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3">
+								<div className="grid grid-cols-3 md:grid-cols-2 sm:grid-cols-2 gap-3">
 									{currentProducts.map((product) => (
 										<div
 											key={product.id}
@@ -178,10 +180,10 @@ const Products = () => {
 												alt={product.title}
 												width={200}
 												height={200}
-												className="rounded w-full h-48 "
+												className="rounded w-[236px] h-[180px]"
 											/>
 											<div className="p-4">
-												<h2 className="text-sm font-bold overflow-hidden line-clamp-1">
+												<h2 className="text-sm font-bold overflow-hidden line-clamp-1 mb-2">
 													{product.title}
 												</h2>
 												<p className="text-sm overflow-hidden line-clamp-2">
@@ -209,8 +211,8 @@ const Products = () => {
 													</span>
 												</div>
 
-												<div className="flex justify-between items-center mt-4">
-													<p className="text-[18px] font-bold leading-[27px] text-[#F2415A]">
+												<div className="flex sm:flex-col justify-between items-center sm:items-start mt-4">
+													<p className="text-[18px] sm:mb-4 font-bold leading-[27px] text-[#F2415A]">
 														${product.price}
 													</p>
 													<button
@@ -227,6 +229,8 @@ const Products = () => {
 									))}
 								</div>
 							)
+
+
 						)}
 
 						<div className="join flex justify-end items-center !bg-transparent pt-[39.5px]">
@@ -253,7 +257,7 @@ const Products = () => {
 							).map((pageNumber) => (
 								<button
 									key={pageNumber}
-									className={`join-item py-[5px] px-[12px] ${pageNumber === currentPage
+									className={`py-[5px] px-[12px] rounded-[4px] ${pageNumber === currentPage
 										? 'bg-[#1C75CF] text-white  border-none'
 										: ''
 										}`}
@@ -281,7 +285,7 @@ const Products = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</div >
 	);
 };
 

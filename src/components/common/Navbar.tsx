@@ -31,6 +31,14 @@ const Navbar = () => {
 						<ul className={`flex items-center gap-[42px]`}>
 							<li>
 								<a
+									href="/"
+									className={` ${pathname === '/'
+										? 'nav-link-item active'
+										: ''
+										}`}
+								>
+								</a>
+								<a
 									href="/products"
 									className={` font-primary font-bold text-[12px] leading-[20px] tracking-[2px] text-[#f9f9f9] uppercase ${pathname === '/products'
 										? 'nav-link-item active'
