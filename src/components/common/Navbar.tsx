@@ -7,7 +7,7 @@ import { RiCloseFill, RiMenu4Fill } from 'react-icons/ri';
 
 const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const pathname = usePathname()
+	const pathname = usePathname();
 
 	const toggleMenu = () => {
 		setIsOpen(!isOpen);
@@ -61,7 +61,7 @@ const Navbar = () => {
 					{/* Mobile Navigation Menu */}
 					{isOpen && (
 						<div
-							className={`absolute top-0 left-0 w-full bg-black shadow-md py-10 duration-1000 ease-in-out ${isOpen ? 'translate-y-0' : '-translate-x-full'
+							className={`absolute top-0 left-0 w-full bg-[#212529] shadow-md py-10 duration-1000 ease-in-out z-[9999] ${isOpen ? 'translate-x-0' : '-translate-x-full'
 								}`}
 						>
 							<ul className={`flex flex-col items-center gap-4`}>

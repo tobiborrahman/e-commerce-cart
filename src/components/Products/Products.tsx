@@ -1,5 +1,7 @@
 'use client';
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
+import { MdOutlineKeyboardDoubleArrowLeft, MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+
 import { Product } from '@/types/product';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
@@ -14,6 +16,11 @@ const Products = () => {
 	const [products, setProducts] = useState<Product[]>([]);
 	const [cart, setCart] = useState<Product[]>([]);
 	const [loading, setLoading] = useState(true);
+
+	const [isGridLayout, setIsGridLayout] = useState(false);
+
+	const handleGridLayout = () => setIsGridLayout(false);
+	const handleRowLayout = () => setIsGridLayout(true);
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const productsPerPage = 6;
@@ -40,10 +47,6 @@ const Products = () => {
 		localStorage.setItem('cart', JSON.stringify(newCart));
 	};
 
-	const totalAmount = cart.reduce(
-		(total, product) => total + product.price,
-		0
-	);
 
 	useEffect(() => {
 		const storedCart = JSON.parse(
@@ -75,8 +78,8 @@ const Products = () => {
 					<div className="flex justify-between items-center pb-7 sm:pb-6">
 						<h3 className="capitalize">Our all products</h3>
 						<div className="flex items-center gap-3">
-							<CgMenuGridR className="text-[30px] text-blue-500" />
-							<TfiMenuAlt className="text-[26px]" />
+							<CgMenuGridR onClick={handleGridLayout} className={`text-[30px] ${isGridLayout ? 'text-black' : 'text-[#525CEB]'}`} />
+							<TfiMenuAlt onClick={handleRowLayout} className={`text-[26px] ${isGridLayout ? 'text-[#525CEB]' : 'text-black'}`} />
 						</div>
 					</div>
 					<div className="relative">
@@ -100,76 +103,141 @@ const Products = () => {
 						{loading ? (
 							<p>Loading Products...</p>
 						) : (
-							<div className="grid grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3">
-								{currentProducts.map((product) => (
-									<div
-										key={product.id}
-										className="border rounded-[8px] bg-[#F7F8F8]"
-									>
-										<Image
-											src={product.image}
-											alt={product.title}
-											width={200}
-											height={200}
-											className="w-full h-48 "
-										/>
-										<div className="p-4">
-											<h2 className="text-sm font-bold overflow-hidden line-clamp-1">
-												{product.title}
-											</h2>
-											<p className="text-sm overflow-hidden line-clamp-2">
-												{product.description}
-											</p>
+							isGridLayout ? (
+								<div className="grid grid-cols-1 gap-3 w-full">
+									{currentProducts.map((product) => (
+										<div
+											key={product.id}
+											className="h-[161px] flex items-center border rounded-[8px] bg-[#F7F8F8]"
+										>
+											<Image
+												src={product.image}
+												alt={product.title}
+												width={358}
+												height={159}
+												className="rounded w-[358px] h-[159px]"
+											/>
+											<div className="p-4 flex-1">
+												<h2 className="w-full text-sm font-bold overflow-hidden line-clamp-1">
+													{product.title}
+												</h2>
 
-											<div className="mt-4">
-												<span className="text-yellow-500 text-[16px]">
-													{Array(
-														Math.round(
-															product.rating.rate
+
+												<div className="mt-4">
+													<span className="text-yellow-500 text-[16px]">
+														{Array(
+															Math.round(
+																product.rating.rate
+															)
 														)
-													)
-														.fill(0)
-														.map((_, i) => (
-															<span key={i}>
-																★
-															</span>
-														))}
-												</span>
-												<br />
-												<span className="text-[14px] font-normal font-primary leading-[21px] text-[#ADB0B7]">
-													({product.rating.count}{' '}
-													Review)
-												</span>
+															.fill(0)
+															.map((_, i) => (
+																<span key={i}>
+																	★
+																</span>
+															))}
+													</span>
+													<br />
+													<span className="text-[14px] font-normal font-primary leading-[21px] text-[#ADB0B7]">
+														({product.rating.count}{' '}
+														Review)
+													</span>
+
+												</div>
+												<div className="flex justify-between items-center mt-4 w-full">
+													<div>
+														<p className="text-[18px] font-bold leading-[27px] text-[#F2415A]">
+															${product.price}
+														</p>
+													</div>
+													<div>
+														<button
+															className="bg-primary text-white py-[6px] px-[10px] rounded hover:bg-blue-700 font-normal font-primary text-[16px] leading-[24px]"
+															onClick={() =>
+																addToCart(product)
+															}
+														>
+															Add to Cart
+														</button>
+													</div>
+												</div>
 											</div>
 
-											<div className="flex justify-between items-center mt-4">
-												<p className="text-[18px] font-bold leading-[27px] text-[#F2415A]">
-													${product.price}
+										</div>
+									))}
+								</div>
+							) : (
+								<div className="grid grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3">
+									{currentProducts.map((product) => (
+										<div
+											key={product.id}
+											className="border rounded-[8px] bg-[#F7F8F8]"
+										>
+											<Image
+												src={product.image}
+												alt={product.title}
+												width={200}
+												height={200}
+												className="rounded w-full h-48 "
+											/>
+											<div className="p-4">
+												<h2 className="text-sm font-bold overflow-hidden line-clamp-1">
+													{product.title}
+												</h2>
+												<p className="text-sm overflow-hidden line-clamp-2">
+													{product.description}
 												</p>
-												<button
-													className="bg-primary text-white py-[6px] px-[10px] rounded hover:bg-blue-700 font-normal font-primary text-[16px] leading-[24px]"
-													onClick={() =>
-														addToCart(product)
-													}
-												>
-													Add to Cart
-												</button>
+
+												<div className="mt-4">
+													<span className="text-yellow-500 text-[16px]">
+														{Array(
+															Math.round(
+																product.rating.rate
+															)
+														)
+															.fill(0)
+															.map((_, i) => (
+																<span key={i}>
+																	★
+																</span>
+															))}
+													</span>
+													<br />
+													<span className="text-[14px] font-normal font-primary leading-[21px] text-[#ADB0B7]">
+														({product.rating.count}{' '}
+														Review)
+													</span>
+												</div>
+
+												<div className="flex justify-between items-center mt-4">
+													<p className="text-[18px] font-bold leading-[27px] text-[#F2415A]">
+														${product.price}
+													</p>
+													<button
+														className="bg-primary text-white py-[6px] px-[10px] rounded hover:bg-blue-700 font-normal font-primary text-[16px] leading-[24px]"
+														onClick={() =>
+															addToCart(product)
+														}
+													>
+														Add to Cart
+													</button>
+												</div>
 											</div>
 										</div>
-									</div>
-								))}
-							</div>
+									))}
+								</div>
+							)
 						)}
 
-						<div className="join flex justify-end !bg-transparent pt-[39.5px]">
+						<div className="join flex justify-end items-center !bg-transparent pt-[39.5px]">
 							<button
-								className="join-item btn"
+								className="join-item py-[5px] px-[10px] mt-[4px]"
 								onClick={() => paginate(1)}
 							>
-								«
+								<MdOutlineKeyboardDoubleArrowLeft />
 							</button>
 							<button
-								className="join-item btn"
+								className="join-item py-[5px] px-[12px] mt-[4px]"
 								onClick={() => paginate(currentPage - 1)}
 								disabled={currentPage === 1}
 							>
@@ -185,8 +253,8 @@ const Products = () => {
 							).map((pageNumber) => (
 								<button
 									key={pageNumber}
-									className={`join-item btn ${pageNumber === currentPage
-										? 'bg-blue-500 text-white border-none'
+									className={`join-item py-[5px] px-[12px] ${pageNumber === currentPage
+										? 'bg-[#1C75CF] text-white  border-none'
 										: ''
 										}`}
 									onClick={() => paginate(pageNumber)}
@@ -195,19 +263,22 @@ const Products = () => {
 								</button>
 							))}
 
-							<button className="join-item btn">
+							<button className="join-item py-[5px] px-[12px] mt-[4px]">
 								<RiArrowRightSLine />
 							</button>
-							<button className="join-item btn">»</button>
+							<button className="join-item py-[5px] px-[10px] mt-[4px]">
+								<MdOutlineKeyboardDoubleArrowRight />
+							</button>
 						</div>
 					</div>
 
-					<div className='w-[444px] mt-[-60px]'>
-						<Cart cart={cart} removeFromCart={removeFromCart} alignment='center' />
+					<div className="w-[444px] mt-[-60px] sm:hidden md:hidden lg:block">
+						<Cart
+							cart={cart}
+							removeFromCart={removeFromCart}
+							alignment="center"
+						/>
 					</div>
-
-
-
 				</div>
 			</div>
 		</div>
@@ -215,4 +286,3 @@ const Products = () => {
 };
 
 export default Products;
-
