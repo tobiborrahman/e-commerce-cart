@@ -8,7 +8,6 @@ const CartPage: React.FC = () => {
     const [cart, setCart] = useState<Product[]>([]);
 
     useEffect(() => {
-        // Retrieve cart data from local storage
         const storedCart = localStorage.getItem('cart');
         if (storedCart) {
             setCart(JSON.parse(storedCart));
@@ -18,7 +17,6 @@ const CartPage: React.FC = () => {
     const removeFromCart = (cartItemId: string) => {
         const updatedCart = cart.filter((item) => item.cartItemId !== cartItemId);
         setCart(updatedCart);
-        // Update local storage
         localStorage.setItem('cart', JSON.stringify(updatedCart));
     };
 
